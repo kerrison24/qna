@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  get 'signup' => 'users#new'
 
+  resources :users
   resources :lists do
     resources :questions
   end
-  
+
   root 'lists#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
