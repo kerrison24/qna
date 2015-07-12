@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Qna</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Qna</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to "Home", root_url %></li>
+          <% if logged_in? %>
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+          <% else %>
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <% flash.each do |message| %>
+      <%= message %>
+    <% end %>
+    <%= yield %>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>
