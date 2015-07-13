@@ -31,6 +31,7 @@ module SessionsHelper
     session[:forwarding_url] = request.url if request.get?
   end
 
+  # Ensures that the user is logged in
   def logged_in_user
     unless logged_in?
       store_location
