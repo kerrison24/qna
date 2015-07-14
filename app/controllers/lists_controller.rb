@@ -1,5 +1,8 @@
 class ListsController < ApplicationController
+  include ListsHelper
   before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
+  before_action :correct_user_for_list, only: [:edit, :update, :destroy]
+
   def index
     @lists = List.all
   end
@@ -14,10 +17,12 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @user = User.find(@list.user_id)
   end
 
   def create
-    @list = List.new(list_params)
+    user = User.find_by(id: session[:user_id])
+    @list = user.lists.create(list_params)
     if @list.save
       redirect_to @list
     else
@@ -35,8 +40,8 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find(params[:id])
-    @list.destroy
+    List.find(params[:id]).destroy
+    flash[:success] = "Session successfully deleted"
     redirect_to root_url
   end
 

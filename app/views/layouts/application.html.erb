@@ -21,8 +21,8 @@
         </ul>
       </nav>
     </header>
-    <% flash.each do |message| %>
-      <%= message %>
+    <% flash.each do |message_type, message| %>
+      <%= message_type %> <%= message %>
     <% end %>
     <%= yield %>
 

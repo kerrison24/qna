@@ -2,3 +2,9 @@
 <% if !current_user?(@user) %>
   <br> <%= link_to "Delete account", user, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
+<br>
+
+<h2>My sessions</h2>
+<% @user.lists.each do |list| %>
+  <%= link_to "#{list.title}", list %>
+<% end %>
