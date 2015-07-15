@@ -3,8 +3,10 @@
 <p>
   <%= @list.description %>
 </p>
-<% @list.questions.each do |q| %>
-  <%= q.title %><br>
+<% @list.questions.each do |question| %>
+  <%= question.title %>
+  <%= render 'questions/like', { question: question } %>
+  <br>
 <% end %>
 <h2>Post a question</h2>
 <%= render 'questions/form' %>
