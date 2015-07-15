@@ -9,22 +9,27 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><%= link_to "Home", root_url %></li>
-          <% if logged_in? %>
-            <li><%= link_to "Profile", current_user %></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-          <% else %>
-            <li><%= link_to "Log in", login_path %></li>
-          <% end %>
-        </ul>
+        <div class="container">
+          <ul>
+            <li><%= link_to "Home", root_url %></li>
+            <% if logged_in? %>
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% else %>
+              <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+          </ul>
+        </div>
       </nav>
     </header>
-    <% flash.each do |message_type, message| %>
-      <%= message_type %> <%= message %>
-    <% end %>
-    <%= yield %>
-
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <ul class="collection">
+          <li class="collection-item"><%= message %></li>
+        </ul>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

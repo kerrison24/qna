@@ -1,10 +1,21 @@
-<%= @user.name %>
+<h1><%= @user.name %></h1>
 <% if !current_user?(@user) %>
   <br> <%= link_to "Delete account", user, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 <br>
 
-<h2>My sessions</h2>
-<% @user.lists.each do |list| %>
-  <%= link_to "#{list.title}", list %><br>
+<h4>My sessions</h4>
+<% if @user.lists.any? %>
+  <ul class="collection">
+  <% @user.lists.each do |list| %>
+  <li class="collection-item">
+    <%= link_to "#{list.title}", list %> |
+    <%= link_to 'Edit', edit_list_path(list) %>,
+    <%= link_to 'Delete', list_path(list), method: :delete, data: { confirm: "Are you sure?" } %>
+  </li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>You haven't made any sessions :(</p>
+  <%= button_to 'Create a session', new_list_path, method: 'get', class: 'waves-effect waves-light btn' %>
 <% end %>
