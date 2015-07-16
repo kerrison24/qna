@@ -1,4 +1,12 @@
 <%= form_for([@list, @list.questions.build]) do |f| %>
+  <% if @list.errors.any? %>
+    The form contains <%= pluralize(@list.errors.count, "error") %>.
+    <ul>
+    <% @list.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>

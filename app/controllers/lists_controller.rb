@@ -18,6 +18,7 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @user = User.find(@list.user_id)
+    @questions = @list.questions.order_by_likes
     if current_user.nil?
       flash.now[:notice] = "Must log in to like a question"
     end

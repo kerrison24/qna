@@ -5,7 +5,7 @@
 </p>
 <% if @list.questions.any? %>
   <ul class="collection">
-    <% @list.questions.each do |question| %>
+    <% @questions.each do |question| %>
     <li class="collection-item">
       <%= question.title %>
       <%= render 'questions/like', { question: question } %>
@@ -14,7 +14,9 @@
   </ul>
 <% end %>
 <h2>Post a question</h2>
-<%= render 'questions/form' %>
+<div>
+  <%= render 'questions/form' %>
+</div>
 <br>
 <%= link_to 'Edit', edit_list_path(@list) %><br>
 <%= link_to 'Back', root_url %>

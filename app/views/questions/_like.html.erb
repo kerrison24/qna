@@ -1,6 +1,6 @@
-(<%= Like::Like.with_likeable(question).count %>) |
+(<%= pluralize(Like::Like.with_likeable(question).count, 'vote') %>) |
  <% if Like::Like.liking?(current_user, question) %>
-   <%= link_to 'Unlike', like_path_for(question), method: :delete %>
+   <%= link_to 'Downvote', like_path_for(question), method: :delete %>
  <% else %>
-     <%= link_to 'Like', like_path_for(question), method: :post %>
+     <%= link_to 'Upvote', like_path_for(question), method: :post %>
  <% end %>
