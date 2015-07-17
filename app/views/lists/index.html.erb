@@ -3,17 +3,23 @@
   <%= button_to 'Create a session', new_list_path, method: 'get', class: 'waves-effect waves-light btn' %>
   <br><br>
 </div>
-<div class="center">
-  <h1>Current sessions running</h1>
-</div>
-<div class="collection-index">
-  <ul class="collection">
-    <% @lists.each do |list| %>
-      <li class="collection-item">
-      <%= link_to list do %>
-        <h5><%= list.title %></h5>
+<% if @lists.any? %>
+  <div class="center">
+    <h1>Current sessions running</h1>
+  </div>
+  <div class="collection-index">
+    <ul class="collection">
+      <% @lists.each do |list| %>
+        <li class="collection-item">
+        <%= link_to list do %>
+          <h5><%= list.title %></h5>
+        <% end %>
       <% end %>
-    <% end %>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
+<% else %>
+  <div class="center">
+    <h4>There are currently no sessions running right now. Be the first!</h4>
+  </div>
+<% end %>
