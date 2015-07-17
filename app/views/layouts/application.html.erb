@@ -8,55 +8,16 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="header">
-        <header>
-          <nav>
-            <div class="container">
-              <ul>
-                <li><%= link_to "Home", root_url %></li>
-                <% if logged_in? %>
-                  <li><%= link_to "Profile", current_user %></li>
-                  <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                  <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-                <% else %>
-                  <li><%= link_to "Log in", login_path %></li>
-                <% end %>
-              </ul>
-            </div>
-          </nav>
-        </header>
-      </div>
+      <%= render 'layouts/header' %>
       <div class="content">
         <div class="container">
           <div class="content">
-            <% flash.each do |message_type, message| %>
-              <ul class="collection">
-                <li class="collection-item"><%= message %></li>
-              </ul>
-            <% end %>
+            <%= render 'layouts/flash' %>
             <%= yield %>
           </div>
         </div>
       </div>
-      <div class="footer">
-        <footer class="page-footer">
-              <div class="container">
-                <div class="row">
-                  <div class="col l6 s12">
-                    <h5 class="white-text">Built by: <a href="http://www.kerrisongarcia.com" class="grey-text text-lighten-4" target="_blank">Kerrison Garcia</a></h5>
-                  </div>
-                </div>
-              </div>
-              <div class="footer-copyright">
-                <div class="container">
-                <a href="http://www.kerrisongarcia.com" class="grey-text text-lighten-4" target="_blank">www.kerrisongarcia.com</a>
-                </div>
-              </div>
-            </footer>
-      </div>
+      <%= render 'layouts/footer' %>
     </div>
-
-
-
   </body>
 </html>
